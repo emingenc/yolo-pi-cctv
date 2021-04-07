@@ -7,7 +7,6 @@ def run_camera(filename:str)-> None:
     camera.start_preview()
     sleep(2)
     for filename in camera.capture_continuous(f'{filename}.jpg'):
-        print('Captured %s' % filename)
         sleep(2) # wait 2 sec
 
 

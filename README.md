@@ -41,3 +41,22 @@
         4d. Install requirements.txt:
 
         ```pip3 install -r requirements.txt```
+
+5) Auto-start at boot:
+
+    * open etc/profile:
+
+    ```sudo nano /etc/profile```
+
+    * add these commands end of the file
+        
+    ```source /home/pi/pi-cctv/venv/bin/activate```
+
+    ```cd /home/pi/pi-cctv```
+
+    ```python3 /home/pi/pi-cctv/camera.py &```
+        
+        a. ctrl+x 
+        b. save(press y)
+        c. press Enter to save file
+
