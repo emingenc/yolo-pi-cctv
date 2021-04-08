@@ -58,5 +58,12 @@
         
         a. ctrl+x 
         b. save(press y)
-        c. press Enter to save file
+        c. press Enter to save file 
 
+6) apt-get requirements for image compression:
+
+    * install:
+
+        ```sudo apt-get install libopenjp2-7```
+
+        ```sudo apt install libtiff5```
