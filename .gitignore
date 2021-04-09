@@ -65,10 +65,7 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
+# Scrapy stuff:vicorn
 docs/_build/
 
 # PyBuilder
@@ -127,3 +124,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.vscode/
+
