@@ -1,10 +1,10 @@
-from time import sleep
-from picamera import PiCamera
 import argparse
 import json
 import requests
 import socket
 import base64
+from time import sleep
+from picamera import PiCamera
 from PIL import Image
 from io import BytesIO
 
@@ -39,7 +39,6 @@ def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Respons
 
 
 def run_camera(file_name:str)-> None:
-    '''Runs camera and take shot every 2 sec and overwrite it on same image'''
     camera:PiCamera = PiCamera()
     camera.rotation=270 #For to fix image output
     camera.start_preview()
