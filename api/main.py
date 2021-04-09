@@ -1,6 +1,6 @@
 import datetime
 import uvicorn
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Request
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -32,8 +32,12 @@ class Image(BaseModel):
 
 
 @app.get("/")
-async def root()->dict:
-    return {"message": "Hello World"}
+async def root(request:Request)->dict:
+    return {
+             "message": "pi-cctv api",
+             "swagger_docs": f"{request.client.host+app.docs_url}",
+             "redocs": f"{request.client.host+app.redoc_url }",
+                                                    }
 
 @app.get("/images")
 async def get_images()->list:
