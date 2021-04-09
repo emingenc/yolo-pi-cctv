@@ -3,7 +3,27 @@ from pydantic import BaseModel
 import datetime
 import uvicorn
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+#ADD frontend url to origin for api work. 
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8081/"
+    "http://localhost:8080",
+    "http://localhost:8081",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 db = []
 
@@ -38,6 +58,7 @@ async def create_image(image:Image):
 async def delete_image(image_id: int):
     db.pop(image_id-1)
     return {}
+
 
 if __name__ == "__main__":
     uvicorn.run(app=app,host='0.0.0.0')

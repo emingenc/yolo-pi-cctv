@@ -66,3 +66,4 @@ if __name__ == "__main__":
     parser.add_argument('--name',default="img", type=str,  help='image file name')
     opt = parser.parse_args()
     run_camera(opt.name)
+    
