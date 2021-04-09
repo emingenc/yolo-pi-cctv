@@ -9,7 +9,7 @@ from PIL import Image
 from io import BytesIO
 
 
-def get_image_data(image_name:str)->bytes:
+def get_image_data(image_name:str)->str:
     '''Gets image data as bytes for ready to post'''
     with open(f'{image_name}.png','rb') as image_file:
         image_data = image_file.read()
@@ -20,28 +20,27 @@ def compress_image(image_name:str)->None:
     '''Takes image name as an input find it and compress it'''
     with open(f'{image_name}.jpg', "rb") as image_file:
         data = base64.b64encode(image_file.read())
-
     img = Image.open(BytesIO(base64.b64decode(data)))
     img.save(f'{image_name}.png', 'PNG')
 
 
-def post_image(frame:int,image_name:str,  image:bytes, url:str)-> None:
+def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Response:
     '''Sends image and device data to server'''
     device_name = socket.gethostname()
-    data = {
+    data_dict: dict = {
                 "frame":frame,
                 "device_name": device_name,
                 "image_name": image_name,
                 "image": image              
                                             }
-    data = json.dumps(data)
+    data:str = json.dumps(data_dict)
     response = requests.post(url,  data=data)
     return response
 
 
 def run_camera(file_name:str)-> None:
     '''Runs camera and take shot every 2 sec and overwrite it on same image'''
-    camera = PiCamera()
+    camera:PiCamera = PiCamera()
     camera.rotation=270 #For to fix image output
     camera.start_preview()
     sleep(2)
