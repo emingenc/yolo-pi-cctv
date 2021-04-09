@@ -1,15 +1,17 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 import datetime
+import uvicorn
 
 app = FastAPI()
 
 db = []
 
 class Image(BaseModel):
+    frame: int
     device_name: str
     image_name: str
-    image: list
+    image: bytes
 
 
 @app.get("/")
@@ -36,4 +38,7 @@ async def create_image(image:Image):
 async def delete_image(image_id: int):
     db.pop(image_id-1)
     return {}
+
+if __name__ == "__main__":
+    uvicorn.run(app=app,host='0.0.0.0')
 
