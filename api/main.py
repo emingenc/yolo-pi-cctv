@@ -2,12 +2,11 @@ import datetime
 import uvicorn
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
-
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-#ADD frontend url to origin for api work. 
+#ADD frontend url to origin for api work.
 origins = [
     "http://localhost",
     "http://localhost:8081/"
@@ -38,19 +37,19 @@ async def root()->dict:
 
 @app.get("/images")
 async def get_images()->list:
-    print(type(db))
     return db
 
 @app.get("/images/{image_id}")
-async def get_image(image_id:int)->str:
+async def get_image(image_id:int)->dict:
     image = db[image_id-1]
     return image
 
 @app.post("/images")
-async def create_image(image:Image)->Image:
+async def create_image(image:Image)->dict:
     image = image.dict()
     image['time']= datetime.datetime.now()
     db.append(image)
+    print(type(db[-1]))
     return db[-1]
 
 @app.delete("/images/{image_id}")
