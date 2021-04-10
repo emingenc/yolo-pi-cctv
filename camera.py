@@ -13,7 +13,7 @@ def get_image_data(image_name:str, image_extension:str=".jpg")->str:
     '''Gets image data as bytes for ready to post'''
     with open(f'{image_name}{image_extension}','rb') as image_file:
         image_data = image_file.read()
-    return base64.b64encode(image_data).decode() # for to fit in json.dumps()
+    return base64.b64encode(image_data).decode() # To fit in json.dumps()
 
 
 def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Response:
@@ -32,7 +32,7 @@ def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Respons
 
 def run_camera(file_name:str)-> None:
     camera:PiCamera = PiCamera()
-    camera.rotation=270 #For to fix image output
+    camera.rotation=270 # To fix image output
     camera.start_preview()
     sleep(2)
     frame_count=0
@@ -45,7 +45,7 @@ def run_camera(file_name:str)-> None:
                         image_name=filename,
                         image=base64_image,
                         url='http://192.168.88.132:8000/images/')
-        except socket.error as error: # For to prevent crush when connection lost or when pi can not connect
+        except socket.error as error: # To prevent crashes when connection is lost/when pi can not connect
             print('Server connection error ')
         sleep(2) # wait 2 sec
 
