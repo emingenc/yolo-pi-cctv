@@ -6,7 +6,6 @@ import argparse
 import json
 import requests
 from picamera import PiCamera
-from PIL import Image
 
 
 def get_image_data(image_name:str, image_extension:str=".jpg")->str:
