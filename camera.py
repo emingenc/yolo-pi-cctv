@@ -28,12 +28,16 @@ def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Respons
     response = requests.post(url,  data=data)
     return response
 
-
-def run_camera(file_name:str)-> None:
+def init_cam()-> PiCamera():
+    '''Initiates a Pi Camera with correct rotation'''
     camera:PiCamera = PiCamera()
     camera.rotation=270 # To fix image output
     camera.start_preview()
-    sleep(2)
+    sleep(2) #Wait until init is done
+    return camera
+
+def run_camera(file_name:str)-> None:
+    camera = init_cam()
     frame_count=0
     for filename in camera.capture_continuous(f'{file_name}.jpg'):
         frame_count += 1
