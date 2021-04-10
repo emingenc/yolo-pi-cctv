@@ -23,7 +23,7 @@ def post_image(frame:int,image_name:str,  image:str, url:str)-> requests.Respons
                 "frame":frame,
                 "device_name": device_name,
                 "image_name": image_name,
-                "image": image              
+                "image": image
                                             }
     data:str = json.dumps(data_dict)
     response = requests.post(url,  data=data)
@@ -51,7 +51,7 @@ def run_camera(file_name:str)-> None:
 
 
 if __name__ == "__main__":
-    # python3 camera.py --name <filename>  
+    # python3 camera.py --name <filename>
     parser = argparse.ArgumentParser()
     parser.add_argument('--name',default="img", type=str,  help='image file name')
     opt = parser.parse_args()
