@@ -1,12 +1,12 @@
+from io import BytesIO
+from time import sleep
+import socket
+import base64
 import argparse
 import json
 import requests
-import socket
-import base64
-from time import sleep
-# from picamera import PiCamera
+from picamera import PiCamera
 from PIL import Image
-from io import BytesIO
 
 
 def get_image_data(image_name:str, image_extension:str=".jpg")->str:
