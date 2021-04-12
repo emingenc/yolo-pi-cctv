@@ -10,7 +10,7 @@ def get_image_data(image_name:str, image_extension:str=".jpg")->str:
     return base64.b64encode(image_data).decode() # To fit in json.dumps()
 
 
-def init_cam()-> PiCamera():
+def init_cam():
     '''Initiates a Pi Camera with correct rotation'''
     camera:PiCamera = PiCamera()
     camera.rotation=270 # To fix image output
