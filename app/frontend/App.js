@@ -9,11 +9,11 @@ export default function App() {
   const [images,setImages]=useState([]);
 
   useEffect(() => {
-    axios.get(`http://192.168.88.132:8000/images`)
+    axios.get(`http://192.168.88.132:8000/latest`)
       .then(res => {
         const images = res.data;
         console.log(images)
-        setImages(images.reverse());
+        setImages(images);
       })
   }, []);
 
