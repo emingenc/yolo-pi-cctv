@@ -1,21 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 
 
 export default function App() {
 
   const [images,setImages]=useState([]);
+  let callFreq = 2 * 1000
 
-  useEffect(() => {
-    axios.get(`http://192.168.88.132:8000/latest`)
+   useEffect(() => {
+      axios.get(`http://192.168.88.132:8000/latest`)
       .then(res => {
         const images = res.data;
         console.log(images)
         setImages(images);
       })
   }, []);
+
+  setInterval( () => {
+    axios.get(`http://192.168.88.132:8000/latest`)
+    .then(res => {
+      const images = res.data;
+      console.log(images)
+      setImages(images);
+    })
+  }, callFreq); //api call in every x seconds
 
   return (
     <View style={styles.container}>
