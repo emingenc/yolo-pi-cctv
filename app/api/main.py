@@ -8,6 +8,7 @@ app = FastAPI()
 
 #ADD frontend url to origin for api work.
 origins = [
+    "http://localhost:19006",
     "http://localhost",
     "http://localhost:8081/"
     "http://localhost:8080",
@@ -44,11 +45,11 @@ async def get_images()->list:
     return db
 
 @app.get("/latest")
-async def get_images()->list:
+async def get_latest_images()->list:
     if len(db) > 10:
-        return sorted(db[-10:],reverse=True)
+        return db[-10:][::-1]
     else:
-        return sorted(db,reverse=True)
+        return db[::-1]
 
 @app.get("/images/{image_id}")
 async def get_image(image_id:int)->dict:
