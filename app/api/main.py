@@ -61,7 +61,6 @@ async def create_image(image:Image)->dict:
     image = image.dict()
     image['time']= datetime.datetime.now()
     db.append(image)
-    print(type(db[-1]))
     return db[-1]
 
 @app.delete("/images/{image_id}")
