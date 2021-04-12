@@ -8,6 +8,8 @@ app = FastAPI()
 
 #ADD frontend url to origin for api work.
 origins = [
+    "http://localhost:19006",
+    "http://localhost:19006/",
     "http://localhost",
     "http://localhost:8081/"
     "http://localhost:8080",
