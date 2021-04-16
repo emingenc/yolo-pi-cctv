@@ -8,6 +8,7 @@ app = FastAPI()
 
 #ADD frontend url to origin for api work.
 origins = [
+    "http://localhost:19006",
     "http://localhost",
     "http://localhost:8081/"
     "http://localhost:8080",
@@ -43,6 +44,13 @@ async def root(request:Request)->dict:
 async def get_images()->list:
     return db
 
+@app.get("/latest")
+async def get_latest_images()->list:
+    if len(db) > 10:
+        return db[-10:][::-1]
+    else:
+        return db[::-1]
+
 @app.get("/images/{image_id}")
 async def get_image(image_id:int)->dict:
     image = db[image_id-1]
@@ -53,7 +61,6 @@ async def create_image(image:Image)->dict:
     image = image.dict()
     image['time']= datetime.datetime.now()
     db.append(image)
-    print(type(db[-1]))
     return db[-1]
 
 @app.delete("/images/{image_id}")
