@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function App() {
 
   const [images,setImages]=useState([]);
-  let callFreq = 2000
+  let callFreq = 5000
 
   setInterval( () => {
     axios.get(`http://192.168.88.132:8000/latest`)

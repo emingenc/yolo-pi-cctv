@@ -54,7 +54,7 @@
 
     ```cd /home/pi/pi-cctv```
 
-    ```python3 /home/pi/pi-cctv/camera.py &```
+    ```python3 /home/pi/pi-cctv/main.py &```
         
         a. ctrl+x 
         b. save(press y)
