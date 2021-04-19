@@ -8,7 +8,7 @@ import os
 from camera import init_cam, get_image_data
 
 def detect_obj(source:str='./img.jpg' ,project_name:str='new_detect'):
-    os.system(f'python3 ../yolov5/detect.py --source {source} --save-txt --project {project_name} --exist-ok')  
+    os.system(f'python3 ../yolov5/detect.py --source {source} --save-txt --save-conf --project {project_name} --exist-ok')  
 
 def post_image(frame:int, image_name:str, image:str, url:str)-> requests.Response:
     '''Sends image and device data to server'''
