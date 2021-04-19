@@ -1,4 +1,4 @@
-from yolov5.detect import detect
+from detect import detect
 
 
-detect(source='/home/pi/pi-cctv/img.jpg')
+print(detect(source='img.jpg',classes=range(300)))   

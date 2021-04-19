@@ -18,8 +18,8 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized
 def detect(
             classes ,
             weights = 'yolov5s.pt',
-            source =  'yolov5/data/images',
-            out =   'yolov5/data/output',
+            source =  '',
+            out =   'data/output',
             imgsz = 640,
             conf_thres = 0.4,
             iou_thres = 0.5,
