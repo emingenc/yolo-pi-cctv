@@ -27,7 +27,7 @@ def main(file_name:str,obj:str='person')-> None:
     frame_count=0
     for filename in camera.capture_continuous(f'data/images/{file_name}.jpg'):
         detected_objects = detect(source=f'data/images/{file_name}.jpg',classes=range(300))
-        sleep(5) 
+        sleep(3)
         frame_count += 1
         base64_image = get_image_data(f'data/output/{file_name}')
         try:
@@ -39,8 +39,10 @@ def main(file_name:str,obj:str='person')-> None:
                             url='http://192.168.1.25:8000/images/')
             else:
                 print(f'{obj} not detected')
+                sleep(3) # wait for not to overload on pi
         except socket.error as error: # To prevent crashes when connection is lost/when pi can not connect
             print('Server connection error ')
+            sleep(3) # wait for not to overload on pi
 
 
 if __name__ == "__main__":
