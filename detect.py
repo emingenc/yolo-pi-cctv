@@ -17,7 +17,6 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized
 
 def detect(
             classes ,
-            save_img=False,
             weights = 'yolov5s.pt',
             source =  'yolov5/data/images',
             out =   'yolov5/data/output',
@@ -26,6 +25,7 @@ def detect(
             iou_thres = 0.5,
             device = '',
             view_img =False,
+            save_img=True,
             save_txt =True ,
             agnostic_nms =True,
             augment = True ,
@@ -118,15 +118,18 @@ def detect(
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # Write results
+                detected_objects = []
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_txt else (cls, *xywh)  # label format
+                        print(line)
                         with open(txt_path + '.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
                     if save_img or view_img:  # Add bbox to image
                         label = f'{names[int(cls)]} {conf:.2f}'
+                        detected_objects.append(f'{names[int(cls)]}')
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
 
             # Print time (inference + NMS)
@@ -161,6 +164,7 @@ def detect(
         print(f"Results saved to {save_dir}{s}")
 
     print(f'Done. ({time.time() - t0:.3f}s)')
+    return detected_objects
 
 
 def main():
