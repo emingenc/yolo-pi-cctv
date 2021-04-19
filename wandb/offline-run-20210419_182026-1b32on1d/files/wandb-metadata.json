@@ -1,0 +1,38 @@
+{
+    "os": "Linux-5.4.0-1041-oracle-x86_64-with-glibc2.29",
+    "python": "3.8.5",
+    "heartbeatAt": "2021-04-19T18:20:26.644328",
+    "startedAt": "2021-04-19T18:20:26.046737",
+    "docker": null,
+    "cpu_count": 24,
+    "cuda": null,
+    "args": [
+        "--img",
+        "416",
+        "--batch",
+        "16",
+        "--epochs",
+        "100",
+        "--data",
+        "/home/ubuntu/yolov5/dataset_chess_pieces/data.yaml",
+        "--cfg",
+        "./models/chess_yolov5s.yaml",
+        "--weights",
+        "",
+        "--name",
+        "yolov5s_results",
+        "--cache"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/ultralytics/yolov5",
+        "commit": "238583b7d5c19029920d56c417c406c829569c75"
+    },
+    "email": null,
+    "root": "/home/ubuntu/yolov5",
+    "host": "instance-20210419-1948",
+    "username": "ubuntu",
+    "executable": "/usr/bin/python3"
+}
