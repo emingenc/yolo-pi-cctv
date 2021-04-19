@@ -10,7 +10,7 @@ export default function App() {
   let callFreq = 5000
 
   setInterval( () => {
-    axios.get(`http://192.168.88.132:8000/latest`)
+    axios.get(`http://192.168.1.25:8000/latest`)
     .then(res => {
       const images = res.data;
       console.log(images)
