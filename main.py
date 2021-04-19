@@ -47,7 +47,7 @@ if __name__ == "__main__":
     # python3 camera.py --name <filename>
     parser = argparse.ArgumentParser()
     parser.add_argument('--file-name',default="img", type=str,  help='image file name')
-    parser.add_argument('--obj',default="person", type=str,  help='detection class name')
+    parser.add_argument('--obj',default="bottle", type=str,  help='detection class name')
     opt = parser.parse_args()
     args = vars(opt)
     print(args)
