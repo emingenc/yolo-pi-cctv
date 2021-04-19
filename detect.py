@@ -20,20 +20,19 @@ def detect(
             weights = 'yolov5s.pt',
             source =  '',
             out =   'data/output',
-            imgsz = 640,
+            imgsz = 280,
             conf_thres = 0.4,
             iou_thres = 0.5,
             device = '',
             view_img =False,
             save_img=True,
-            save_txt =True ,
+            save_txt =False ,
             agnostic_nms =True,
             augment = True ,
             update = True
 
             ):
-    
-    
+
 
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
