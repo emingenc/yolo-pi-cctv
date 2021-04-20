@@ -26,7 +26,13 @@ def main(file_name:str,obj:str='person')-> None:
     camera = init_cam()
     frame_count=0
     for filename in camera.capture_continuous(f'data/images/{file_name}.jpg'):
-        detected_objects = detect(source=f'data/images/{file_name}.jpg',classes=range(300))
+        detected_objects = detect(
+                                    source=f'data/images/{file_name}.jpg',
+                                    weights='pawn.pt',
+                                    imgsz = 280,
+                                    conf_thres = 0.4,
+                                    iou_thres = 0.5,
+                                    classes=range(300))
         sleep(3)
         frame_count += 1
         base64_image = get_image_data(f'data/output/{file_name}')
