@@ -53,7 +53,7 @@ def main(file_name:str,obj:str='person')-> None:
 
 
 if __name__ == "__main__":
-    # python3 camera.py --file-name <filename> --obj <obj_name>
+    # python3 main.py --file-name <filename> --obj <obj_name>
     parser = argparse.ArgumentParser()
     parser.add_argument('--file-name',default="img", type=str,  help='image file name')
     parser.add_argument('--obj',default="pawn", type=str,  help='detection class name')
