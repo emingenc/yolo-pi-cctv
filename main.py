@@ -30,7 +30,7 @@ def main(file_name:str,obj:str='person')-> None:
                                     source=f'data/images/{file_name}.jpg',
                                     weights='pawn.pt',
                                     imgsz = 280,
-                                    conf_thres = 0.4,
+                                    conf_thres = 0.51,
                                     iou_thres = 0.5,
                                     classes=range(300))
         sleep(3)
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     # python3 camera.py --name <filename>
     parser = argparse.ArgumentParser()
     parser.add_argument('--file-name',default="img", type=str,  help='image file name')
-    parser.add_argument('--obj',default="bottle", type=str,  help='detection class name')
+    parser.add_argument('--obj',default="pawn", type=str,  help='detection class name')
     opt = parser.parse_args()
     args = vars(opt)
     print(args)
