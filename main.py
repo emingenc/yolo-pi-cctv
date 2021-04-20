@@ -6,7 +6,8 @@ import json
 import requests
 import os
 from camera import init_cam, get_image_data
-from detect import detect 
+from detect import detect
+
 
 def post_image(frame:int, image_name:str, image:str, url:str)-> requests.Response:
     '''Sends image and device data to server'''
@@ -52,7 +53,7 @@ def main(file_name:str,obj:str='person')-> None:
 
 
 if __name__ == "__main__":
-    # python3 camera.py --name <filename>
+    # python3 camera.py --file-name <filename> --obj <obj_name>
     parser = argparse.ArgumentParser()
     parser.add_argument('--file-name',default="img", type=str,  help='image file name')
     parser.add_argument('--obj',default="pawn", type=str,  help='detection class name')
