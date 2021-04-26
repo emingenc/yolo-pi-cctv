@@ -6,17 +6,22 @@ import axios from 'axios';
 
 export default function App() {
 
-  const [images,setImages]=useState([]);
-  let callFreq = 5000
+  const [images,setImages]=useState([]);  
 
-  setInterval( () => {
-    axios.get(`http://192.168.1.25:8000/latest`)
-    .then(res => {
-      const images = res.data;
-      console.log(images)
-      setImages(images);
-    })
-  }, callFreq); //api call in every x seconds
+
+  useEffect( async () => {
+    const image_responses = await axios.get(`http://192.168.88.132:8000/latest`)
+    setImages(image_responses.data);
+}, []);
+
+  // setInterval( () => {
+  //   axios.get(`http://192.168.88.12:8000/latest`)
+  //   .then(res => {
+  //     const images = res.data;
+  //     console.log(images)
+  //     setImages(images);
+  //   })
+  // }, callFreq); //api call in every x seconds
 
   return (
     <View style={styles.container}>
