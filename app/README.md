@@ -101,38 +101,34 @@
     ```sudo apt-get install nano```
 
 
-    ```sudo nano /etc/nginx/sites-available/default```
 
     * default conf is port 80. first just change root to /var/www/buildfolder in nginx conf and check the ip on your browser, then continue https configrations.
+
+    ```sudo nano /etc/nginx/sites-available/default```
+
+            server {
+                        root         /var/www/buildfolder;
+
+                    }
 
     * reload nginx before testing on your browser:
 
     ```sudo nginx -s reload```
 
-            server {
-                        listen       443 ssl http2 default_server;
-                        listen       [::]:443 ssl http2 default_server;
-                        server_name  _;
-                        root         /var/www/buildfolder;
+    * setup your domain to ip address before certificate setup
 
-                        ssl_certificate "/etc/pki/nginx/server.crt";
-                        ssl_certificate_key "/etc/pki/nginx/private/server.key";
-                        ssl_session_cache shared:SSL:1m;
-                        ssl_session_timeout  10m;
-                        ssl_ciphers PROFILE=SYSTEM;
-                        ssl_prefer_server_ciphers on;
+    * install certbot
 
-                        # Load configuration files for the default server block.
-                        include /etc/nginx/default.d/*.conf;
+        ```sudo apt-get install certbot python3-certbot-nginx```
 
-                        location / {
-                        }
+    * create certificate:
 
-                        error_page 404 /404.html;
-                            location = /40x.html {
-                        }
+        ```sudo certbot certonly --nginx```
 
-                        error_page 500 502 503 504 /50x.html;
-                            location = /50x.html {
-                        }
-                    }
+    * configure sertificate in nginx:
+
+        ```sudo certbot install --nginx```
+
+        ```sudo nginx -s reload```
+
+    * test on your browser https.
