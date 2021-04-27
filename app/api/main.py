@@ -8,9 +8,8 @@ app = FastAPI()
 
 #ADD frontend url to origin for api work.
 origins = [
+    "https://picamera.novit.ai",
     "http://localhost:5000",
-    "http://158.101.214.74", #oracle instance
-    "https://158.101.214.74",
     "http://localhost:19007",
     "http://localhost:19006",
     "http://localhost",
@@ -36,7 +35,7 @@ class Image(BaseModel):
     image: bytes
 
 
-@app.get("/")
+@app.get("/api")
 async def root(request:Request)->dict:
     return {
              "message": "pi-cctv api",
@@ -44,30 +43,30 @@ async def root(request:Request)->dict:
              "redocs": f"{request.client.host+app.redoc_url }",
                                                     }
 
-@app.get("/images")
+@app.get("/api/images")
 async def get_images()->list:
     return db
 
-@app.get("/latest")
+@app.get("/api/latest")
 async def get_latest_images()->list:
     if len(db) > 10:
         return db[-10:][::-1]
     else:
         return db[::-1]
 
-@app.get("/images/{image_id}")
+@app.get("/api/images/{image_id}")
 async def get_image(image_id:int)->dict:
     image = db[image_id-1]
     return image
 
-@app.post("/images")
+@app.post("/api/images")
 async def create_image(image:Image)->dict:
     image = image.dict()
     image['time']= datetime.datetime.now()
     db.append(image)
     return db[-1]
 
-@app.delete("/images/{image_id}")
+@app.delete("/api/images/{image_id}")
 async def delete_image(image_id: int)->dict:
     db.pop(image_id-1)
     return {}
