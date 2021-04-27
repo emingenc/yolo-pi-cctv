@@ -3,8 +3,14 @@ import uvicorn
 from fastapi import FastAPI, File, UploadFile, Request
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static") #for frontend
+templates = Jinja2Templates(directory="templates")
+
 
 #ADD frontend url to origin for api work.
 origins = [
@@ -33,6 +39,10 @@ class Image(BaseModel):
     device_name: str
     image_name: str
     image: bytes
+
+@app.get("/")
+async def serve_spa(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/api")

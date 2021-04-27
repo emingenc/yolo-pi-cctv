@@ -133,7 +133,8 @@
 
     * test on your browser https.
 
-# Deploying fastapi to ubuntu
+# Deploying fastapi and frontend into same instance
+
 
 1) install pip3 , python3
 
@@ -146,3 +147,6 @@
 3) install requirements
 
     ```pip3 install -r requirements.txt```
+
+4) if the frontend build is not setup for fast api look [this solution](https://stackoverflow.com/questions/62928450/how-to-put-backend-and-frontend-together-returning-react-frontend-from-fastapi) then continue fastapi deployement
+
