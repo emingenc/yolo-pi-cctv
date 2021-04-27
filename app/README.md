@@ -150,3 +150,7 @@
 
 4) if the frontend build is not setup for fast api look [this solution](https://stackoverflow.com/questions/62928450/how-to-put-backend-and-frontend-together-returning-react-frontend-from-fastapi) then continue fastapi deployement
 
+5) run the server with certificates:
+
+    ```sudo -E python3 -m uvicorn main:app --host 0.0.0.0 --port 443 --ssl-keyfile=/etc/letsencrypt/live/picamera.novit.ai/privkey.pem --ssl-certfile=/etc/letsencrypt/live/picamera.novit.ai/fullchain.pem```
+6) test on your browser
