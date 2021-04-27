@@ -84,7 +84,7 @@
 
 4) Assumed that you did your tests with: ```npm start``` Build your frontend.
 
-    ```npm build```
+    ```npm run build```
 
     * build folder will be created copy build folder to /var/www/build folder for nginx configration:
 
