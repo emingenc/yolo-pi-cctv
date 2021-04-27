@@ -72,7 +72,7 @@
 
 
 
-# Deploying frontend to 
+# Deploying frontend to ubuntu
 
 1) clone [pi-cctv](https://github.com/novitai/pi-cctv) to the server:
 
@@ -132,3 +132,17 @@
         ```sudo nginx -s reload```
 
     * test on your browser https.
+
+# Deploying fastapi to ubuntu
+
+1) install pip3 , python3
+
+    ```sudo apt-get install python3-pip```
+
+2) cd into fastapi directory
+
+    ```cd pi-cctv/app/api ```
+
+3) install requirements
+
+    ```pip3 install -r requirements.txt```
