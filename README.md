@@ -18,7 +18,7 @@
 
         ```sudo apt install git```
 
-        ```git clone https://github.com/novitai/pi-cctv.git```
+        ```git clone https://github.com/emingenc/pi-cctv.git```
 
         ```cd pi-cctv```
 
